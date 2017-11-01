@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link href="https://fonts.googleapis.com/css?family=Rozha+One" rel="stylesheet">
+        <style>
+            body {
+                font-family: 'Rozha One', serif;
+                font-size: 16px;
+            }
+
+            .aliment {
+                font-size: 2em
+            }
+
+            .score {
+                position: absolute;
+            }
+
+            .zombie-walk {
+
+            }
+
+            .zombie-walk li {
+                list-style-type: none;
+                display: inline;
+            }
+
+            .zombie-walk li::after {
+                content: '...';
+            }
+
+            .zombie-step {
+                position: relative;
+            }
+        </style>
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+
+        <ul class="zombie-walk">
+        {% for item in journey %}
+            <li title="{{loop.index}}" class="zombie-step">
+                {% if (item[0] == 'pizza') %} 
+                    <span class="aliment">{{ '\xF0\x9F\x8D\x95' | raw }}</span>
+                    <span class="score">{{item[1]}}</span>
+                {% endif %}
+                {% if (item[0] == 'ail') %} 
+                    <span class="aliment">{{ '\xF0\x9F\x8D\x84' | raw }}</span>
+                    <span class="score">{{item[1]}}</span>
+                {% endif %}
+                {% if (item[0] == 'banane') %} 
+                    <span class="aliment">{{ '\xF0\x9F\x8D\x8C' | raw }}</span>
+                    <span class="score">{{item[1]}}</span>
+                {% endif %}
+                {% if (item[0] == 'poivron') %} 
+                    <span class="aliment">{{ '\xF0\x9F\x8D\x85' | raw }}</span>
+                    <span class="score">{{item[1]}}</span>
+                {% endif %}
+
+                {% if (item[0] == 'mort') %} 
+                    <span class="aliment">{{ '\xF0\x9F\x92\x80' | raw }}</span>
+                    <span class="score">{{item[1]}}</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    </body>
+</html>
